@@ -54,15 +54,20 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtPostCode = new System.Windows.Forms.TextBox();
-            this.txtCountry = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtEmailAddress = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtNotes = new System.Windows.Forms.TextBox();
-            this.txtNationalInsID = new System.Windows.Forms.TextBox();
-            this.txtDateOfBirth = new System.Windows.Forms.TextBox();
+            this.txtNationalInsuranceNo = new System.Windows.Forms.TextBox();
             this.rdbMarried = new System.Windows.Forms.RadioButton();
             this.rdbSingle = new System.Windows.Forms.RadioButton();
-            this.ckbIsMember = new System.Windows.Forms.CheckBox();
+            this.chkUnionMember = new System.Windows.Forms.CheckBox();
+            this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
+            this.cmbCountry = new System.Windows.Forms.ComboBox();
+            this.btnPreview = new System.Windows.Forms.Button();
+            this.btnAddEmployee = new System.Windows.Forms.Button();
+            this.btnUpdateEmployee = new System.Windows.Forms.Button();
+            this.btnDeleteEmployee = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.grpEmployeeInformation.SuspendLayout();
             this.grpEmployeeContactDetails.SuspendLayout();
             this.grpGender.SuspendLayout();
@@ -71,9 +76,9 @@
             // 
             // grpEmployeeInformation
             // 
-            this.grpEmployeeInformation.Controls.Add(this.ckbIsMember);
-            this.grpEmployeeInformation.Controls.Add(this.txtDateOfBirth);
-            this.grpEmployeeInformation.Controls.Add(this.txtNationalInsID);
+            this.grpEmployeeInformation.Controls.Add(this.dtpDateOfBirth);
+            this.grpEmployeeInformation.Controls.Add(this.chkUnionMember);
+            this.grpEmployeeInformation.Controls.Add(this.txtNationalInsuranceNo);
             this.grpEmployeeInformation.Controls.Add(this.lblUnionMembership);
             this.grpEmployeeInformation.Controls.Add(this.grpMaritalStatus);
             this.grpEmployeeInformation.Controls.Add(this.lblDateOfBirth);
@@ -95,10 +100,10 @@
             // 
             // grpEmployeeContactDetails
             // 
+            this.grpEmployeeContactDetails.Controls.Add(this.cmbCountry);
             this.grpEmployeeContactDetails.Controls.Add(this.txtNotes);
             this.grpEmployeeContactDetails.Controls.Add(this.txtPhoneNumber);
-            this.grpEmployeeContactDetails.Controls.Add(this.textBox5);
-            this.grpEmployeeContactDetails.Controls.Add(this.txtCountry);
+            this.grpEmployeeContactDetails.Controls.Add(this.txtEmailAddress);
             this.grpEmployeeContactDetails.Controls.Add(this.txtPostCode);
             this.grpEmployeeContactDetails.Controls.Add(this.txtCity);
             this.grpEmployeeContactDetails.Controls.Add(this.txtAddress);
@@ -127,7 +132,7 @@
             // 
             // txtEmployeeID
             // 
-            this.txtEmployeeID.Location = new System.Drawing.Point(160, 66);
+            this.txtEmployeeID.Location = new System.Drawing.Point(184, 66);
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(176, 20);
             this.txtEmployeeID.TabIndex = 1;
@@ -153,7 +158,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(160, 122);
+            this.txtFirstName.Location = new System.Drawing.Point(184, 122);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(176, 20);
             this.txtFirstName.TabIndex = 5;
@@ -161,7 +166,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(160, 176);
+            this.txtLastName.Location = new System.Drawing.Point(184, 173);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(176, 20);
             this.txtLastName.TabIndex = 6;
@@ -203,12 +208,13 @@
             // 
             this.btnExit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(807, 618);
+            this.btnExit.Location = new System.Drawing.Point(844, 626);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(161, 41);
+            this.btnExit.Size = new System.Drawing.Size(124, 41);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "E&xit";
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblAddress
             // 
@@ -260,20 +266,21 @@
             // lblEmailAddress
             // 
             this.lblEmailAddress.AutoSize = true;
-            this.lblEmailAddress.Location = new System.Drawing.Point(58, 303);
+            this.lblEmailAddress.Location = new System.Drawing.Point(58, 304);
             this.lblEmailAddress.Name = "lblEmailAddress";
-            this.lblEmailAddress.Size = new System.Drawing.Size(84, 13);
+            this.lblEmailAddress.Size = new System.Drawing.Size(79, 13);
             this.lblEmailAddress.TabIndex = 5;
-            this.lblEmailAddress.Text = "Phone Number :";
+            this.lblEmailAddress.Text = "Email Address :";
             // 
             // lblNotes
             // 
             this.lblNotes.AutoSize = true;
             this.lblNotes.Location = new System.Drawing.Point(58, 353);
             this.lblNotes.Name = "lblNotes";
-            this.lblNotes.Size = new System.Drawing.Size(35, 13);
+            this.lblNotes.Size = new System.Drawing.Size(41, 13);
             this.lblNotes.TabIndex = 6;
-            this.lblNotes.Text = "Notes";
+            this.lblNotes.Text = "Notes :";
+            this.lblNotes.Click += new System.EventHandler(this.lblNotes_Click);
             // 
             // lblNationalInsID
             // 
@@ -318,7 +325,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(152, 66);
+            this.txtAddress.Location = new System.Drawing.Point(152, 70);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(216, 20);
             this.txtAddress.TabIndex = 7;
@@ -337,57 +344,47 @@
             this.txtPostCode.Size = new System.Drawing.Size(216, 20);
             this.txtPostCode.TabIndex = 9;
             // 
-            // txtCountry
+            // txtEmailAddress
             // 
-            this.txtCountry.Location = new System.Drawing.Point(152, 207);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(216, 20);
-            this.txtCountry.TabIndex = 10;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(152, 254);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(216, 20);
-            this.textBox5.TabIndex = 11;
+            this.txtEmailAddress.Location = new System.Drawing.Point(152, 304);
+            this.txtEmailAddress.Name = "txtEmailAddress";
+            this.txtEmailAddress.Size = new System.Drawing.Size(216, 20);
+            this.txtEmailAddress.TabIndex = 11;
+            this.txtEmailAddress.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // txtPhoneNumber
             // 
-            this.txtPhoneNumber.Location = new System.Drawing.Point(152, 303);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(152, 254);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(216, 20);
             this.txtPhoneNumber.TabIndex = 12;
             // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(152, 353);
+            this.txtNotes.Location = new System.Drawing.Point(152, 350);
+            this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(216, 20);
+            this.txtNotes.Size = new System.Drawing.Size(216, 115);
             this.txtNotes.TabIndex = 13;
+            this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
-            // txtNationalInsID
+            // txtNationalInsuranceNo
             // 
-            this.txtNationalInsID.Location = new System.Drawing.Point(236, 323);
-            this.txtNationalInsID.Name = "txtNationalInsID";
-            this.txtNationalInsID.Size = new System.Drawing.Size(100, 20);
-            this.txtNationalInsID.TabIndex = 0;
-            // 
-            // txtDateOfBirth
-            // 
-            this.txtDateOfBirth.Location = new System.Drawing.Point(236, 367);
-            this.txtDateOfBirth.Name = "txtDateOfBirth";
-            this.txtDateOfBirth.Size = new System.Drawing.Size(100, 20);
-            this.txtDateOfBirth.TabIndex = 12;
+            this.txtNationalInsuranceNo.Location = new System.Drawing.Point(260, 320);
+            this.txtNationalInsuranceNo.Name = "txtNationalInsuranceNo";
+            this.txtNationalInsuranceNo.Size = new System.Drawing.Size(100, 20);
+            this.txtNationalInsuranceNo.TabIndex = 0;
+            this.txtNationalInsuranceNo.TextChanged += new System.EventHandler(this.txtNationalInsID_TextChanged);
             // 
             // rdbMarried
             // 
             this.rdbMarried.AutoSize = true;
             this.rdbMarried.Location = new System.Drawing.Point(23, 20);
             this.rdbMarried.Name = "rdbMarried";
-            this.rdbMarried.Size = new System.Drawing.Size(66, 17);
+            this.rdbMarried.Size = new System.Drawing.Size(63, 17);
             this.rdbMarried.TabIndex = 0;
             this.rdbMarried.TabStop = true;
-            this.rdbMarried.Text = "Married :";
+            this.rdbMarried.Text = "Married ";
             this.rdbMarried.UseVisualStyleBackColor = true;
             // 
             // rdbSingle
@@ -395,21 +392,104 @@
             this.rdbSingle.AutoSize = true;
             this.rdbSingle.Location = new System.Drawing.Point(164, 19);
             this.rdbSingle.Name = "rdbSingle";
-            this.rdbSingle.Size = new System.Drawing.Size(60, 17);
+            this.rdbSingle.Size = new System.Drawing.Size(57, 17);
             this.rdbSingle.TabIndex = 1;
             this.rdbSingle.TabStop = true;
-            this.rdbSingle.Text = "Single :";
+            this.rdbSingle.Text = "Single ";
             this.rdbSingle.UseVisualStyleBackColor = true;
             // 
-            // ckbIsMember
+            // chkUnionMember
             // 
-            this.ckbIsMember.AutoSize = true;
-            this.ckbIsMember.Location = new System.Drawing.Point(236, 494);
-            this.ckbIsMember.Name = "ckbIsMember";
-            this.ckbIsMember.Size = new System.Drawing.Size(81, 17);
-            this.ckbIsMember.TabIndex = 13;
-            this.ckbIsMember.Text = "Is Member :";
-            this.ckbIsMember.UseVisualStyleBackColor = true;
+            this.chkUnionMember.AutoSize = true;
+            this.chkUnionMember.Location = new System.Drawing.Point(236, 494);
+            this.chkUnionMember.Name = "chkUnionMember";
+            this.chkUnionMember.Size = new System.Drawing.Size(81, 17);
+            this.chkUnionMember.TabIndex = 13;
+            this.chkUnionMember.Text = "Is Member :";
+            this.chkUnionMember.UseVisualStyleBackColor = true;
+            // 
+            // dtpDateOfBirth
+            // 
+            this.dtpDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateOfBirth.Location = new System.Drawing.Point(160, 368);
+            this.dtpDateOfBirth.Name = "dtpDateOfBirth";
+            this.dtpDateOfBirth.Size = new System.Drawing.Size(200, 20);
+            this.dtpDateOfBirth.TabIndex = 14;
+            // 
+            // cmbCountry
+            // 
+            this.cmbCountry.FormattingEnabled = true;
+            this.cmbCountry.Items.AddRange(new object[] {
+            "Afghanistan",
+            "Italy",
+            "United Kingdom",
+            "United States",
+            "Canada",
+            "Israel"});
+            this.cmbCountry.Location = new System.Drawing.Point(152, 201);
+            this.cmbCountry.Name = "cmbCountry";
+            this.cmbCountry.Size = new System.Drawing.Size(216, 21);
+            this.cmbCountry.TabIndex = 14;
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnPreview.ForeColor = System.Drawing.Color.White;
+            this.btnPreview.Location = new System.Drawing.Point(699, 626);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(114, 41);
+            this.btnPreview.TabIndex = 3;
+            this.btnPreview.Text = "Preview";
+            this.btnPreview.UseVisualStyleBackColor = false;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
+            // 
+            // btnAddEmployee
+            // 
+            this.btnAddEmployee.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAddEmployee.ForeColor = System.Drawing.Color.White;
+            this.btnAddEmployee.Location = new System.Drawing.Point(56, 626);
+            this.btnAddEmployee.Name = "btnAddEmployee";
+            this.btnAddEmployee.Size = new System.Drawing.Size(115, 41);
+            this.btnAddEmployee.TabIndex = 4;
+            this.btnAddEmployee.Text = "Add Employee";
+            this.btnAddEmployee.UseVisualStyleBackColor = false;
+            this.btnAddEmployee.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnUpdateEmployee
+            // 
+            this.btnUpdateEmployee.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnUpdateEmployee.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(231, 626);
+            this.btnUpdateEmployee.Name = "btnUpdateEmployee";
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(112, 41);
+            this.btnUpdateEmployee.TabIndex = 5;
+            this.btnUpdateEmployee.Text = "Update Employee";
+            this.btnUpdateEmployee.UseVisualStyleBackColor = false;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnDeleteEmployee
+            // 
+            this.btnDeleteEmployee.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDeleteEmployee.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(392, 626);
+            this.btnDeleteEmployee.Name = "btnDeleteEmployee";
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(111, 41);
+            this.btnDeleteEmployee.TabIndex = 6;
+            this.btnDeleteEmployee.Text = "Delete Employee";
+            this.btnDeleteEmployee.UseVisualStyleBackColor = false;
+            this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(553, 626);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(110, 41);
+            this.btnReset.TabIndex = 7;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // EmployeeForm
             // 
@@ -418,6 +498,11 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.ClientSize = new System.Drawing.Size(1091, 694);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnDeleteEmployee);
+            this.Controls.Add(this.btnUpdateEmployee);
+            this.Controls.Add(this.btnAddEmployee);
+            this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.grpEmployeeContactDetails);
             this.Controls.Add(this.grpEmployeeInformation);
@@ -463,16 +548,21 @@
         private System.Windows.Forms.GroupBox grpMaritalStatus;
         private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.TextBox txtPhoneNumber;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox txtCountry;
+        private System.Windows.Forms.TextBox txtEmailAddress;
         private System.Windows.Forms.TextBox txtPostCode;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtDateOfBirth;
-        private System.Windows.Forms.TextBox txtNationalInsID;
+        private System.Windows.Forms.TextBox txtNationalInsuranceNo;
         private System.Windows.Forms.RadioButton rdbSingle;
         private System.Windows.Forms.RadioButton rdbMarried;
-        private System.Windows.Forms.CheckBox ckbIsMember;
+        private System.Windows.Forms.CheckBox chkUnionMember;
+        private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
+        private System.Windows.Forms.ComboBox cmbCountry;
+        private System.Windows.Forms.Button btnPreview;
+        private System.Windows.Forms.Button btnAddEmployee;
+        private System.Windows.Forms.Button btnUpdateEmployee;
+        private System.Windows.Forms.Button btnDeleteEmployee;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

@@ -56,5 +56,55 @@ namespace PayrollApplication
         {
 
         }
+
+        private void txtNationalInsID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void lblNotes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNotes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Employee Updated");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Employee Added");
+        }
+
+        private void btnDeleteEmployee_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Employee Deleted");
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Control Reset");
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Employee Preview");
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
