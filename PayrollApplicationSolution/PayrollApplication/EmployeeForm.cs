@@ -17,6 +17,23 @@ namespace PayrollApplication
             InitializeComponent();
         }
 
+        private bool isControlsDataValid()
+        {
+            if (txtEmployeeID.Text.Length < 0)
+            {
+                //Employee ID Validation
+                MessageBox.Show("Please, Enter Employee ID", "Data Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmployeeID.Focus();
+                txtEmployeeID.BackColor = Color.Silver;
+                return false;
+            }
+            else
+            {
+                txtEmployeeID.BackColor = Color.White;
+            }
+            return true;
+        }
+
         private void grpEmployeeInformation_Enter(object sender, EventArgs e)
         {
 
@@ -106,5 +123,36 @@ namespace PayrollApplication
         {
             this.Close();
         }
+
+        #region //Keypress Event Validation  
+        bool IsNumberOrBackspace;
+        private void txtEmployeeID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            IsNumberOrBackspace = false;
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == 8)
+            {
+                IsNumberOrBackspace = true;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            IsNumberOrBackspace = false;
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == 8)
+            {
+                IsNumberOrBackspace = true;
+            }
+            else
+            {
+                e.Handled = true;
+
+            }
+
+        }
+        #endregion 
     }
 }
